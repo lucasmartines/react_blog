@@ -7,7 +7,7 @@
 /build
 # testing
 /coverage
-
+.firebase/**
 # production
 /build
 

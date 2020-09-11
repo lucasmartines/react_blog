@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 export default ({posts}) => {
 
     
+
     const linkOuDefault = ( url) => {
         return url ? url : "https://via.placeholder.com/150"
     }
@@ -18,7 +19,7 @@ export default ({posts}) => {
                     <h2 className="titulo">
                         <Link to={`/post/${id}`} >{titulo} </Link>
                     </h2>
-                    <p> {conteudo.slice(0,300)}...</p>
+                    <p> {removeHtmlTagFilter ( conteudo.slice(0,300) )}...</p>
                     <div className="links">
                         <Link 
                             className="btn btn-primary"
@@ -42,4 +43,15 @@ export default ({posts}) => {
             </ul>
         </div>
     )
+}
+
+
+export function removeHtmlTagFilter( text )
+{
+    
+    let alvo = text.replaceAll(/<[a-zA-Z\/][^>]*>/g, " ")
+    alvo = alvo.replaceAll(/(&nbsp;|&nbsp;|&lt;|&gt;|&gt)*/g,"")
+
+    console.log( alvo )
+    return alvo
 }
