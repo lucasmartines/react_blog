@@ -1,0 +1,45 @@
+.post-list-container{
+
+    .titulo{
+        margin-bottom: 15px;
+        a{
+            text-decoration: none;
+            color: #333;
+        }
+    }
+    .posts-list{
+       
+        li.post-item{
+
+
+            background: white;
+            border-radius:  5px ;
+            padding: 20px;
+            margin-bottom: 40px;
+            border: 1px solid #d2d2d2;
+            color: #444;
+            font-size: 18px;
+
+            img{
+                
+                padding-right: 10px;
+                @media(min-width:720px){
+
+                    max-width: 150px;
+                }
+            }
+
+            .links{
+                margin-top: 20px;
+                text-align: right  ;
+                a{
+                    margin-right: 5px;
+                }
+                a:last-child{
+                    margin-right: 0;
+                }
+            }
+
+        }
+    }
+}

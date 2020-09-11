@@ -1,0 +1,25 @@
+.mostrarPostPage{
+    padding: 20px;
+    &__postImage{
+        max-height: 600px;
+        overflow:hidden;
+        margin-bottom: 60px;
+    }
+
+    &__content{
+        line-height: 1.6em;
+    }
+    img{
+        max-width: fit-content;
+    }
+    .titulo{
+    
+        color: var(--secondary);
+        text-align: center;
+        padding: 0px 0 60px;
+        font-size: 40px;
+        text-transform: uppercase;
+    }
+
+
+}

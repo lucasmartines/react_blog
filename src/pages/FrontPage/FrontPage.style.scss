@@ -1,0 +1,44 @@
+.App {
+  text-align: center;
+}
+
+.front-page{
+
+  max-width: 960px;
+  margin:0 auto;
+
+
+   
+  
+
+  &__controller{
+    text-align: center; 
+  }
+  .front-page__titulo{
+    text-align: center;
+    margin-bottom: 20px;
+
+      font-size: 40px;
+      text-transform: uppercase;
+      padding-top: 10px;
+      font-weight: 800;
+      color: var(--primary);
+  }
+  .posts-list{
+    .titulo{
+      text-align: left;;
+      
+    }
+    li{
+      img{
+        max-height: 150px;
+        overflow: hidden;
+        object-fit: cover;
+      }
+    }
+    
+  }
+
+}
+
+

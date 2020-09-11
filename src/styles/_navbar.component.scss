@@ -1,0 +1,37 @@
+
+.navbar{
+    display:flex;
+    padding: 15px;
+    color:white;
+    background: var(--primary);
+
+
+    @media(min-width:720px){
+        margin: 60px;
+    
+    }
+    margin: 0 5px ;
+    margin-bottom: -0px;
+    border-radius: 10px;
+
+    ul{
+        display: flex;
+        margin: 0;
+        li{
+            
+            a{
+                display:inline-block;
+                padding: 5px 5px;
+                color:  var(--primary-overlay); 
+                text-decoration:none;
+                background: var(--primary);
+                font-size: 20px;
+                &:hover{
+                    
+                    color: var(--primary-overlay);
+                }
+            }
+            
+        }
+    }
+}
