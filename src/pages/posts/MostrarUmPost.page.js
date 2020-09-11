@@ -74,7 +74,8 @@ export default () => {
                     <img src={post?.link}/>
                 </div>
                 <div className="mostrarPostPage__content">
-                    {post?.conteudo} 
+                    <div dangerouslySetInnerHTML={{__html:post?.conteudo}}></div>
+                    
                 </div>    
                  
             </div>
