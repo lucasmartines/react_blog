@@ -68,7 +68,7 @@ function FrontPage( props )
     // this will force a freash first page
     // to avoid bug for examle: when user delete something 
     // this will get from my page, to avoid this
-    // i reset and let hin to first page
+    // i reset and push user to first page
       setActualPostDoc(null)
       setLastPostDoc(null )
 
@@ -133,8 +133,8 @@ function FrontPage( props )
         
         
         <div class="front-page__controller">
-            <button onClick={onBeforeHandle}>Previews</button>
-            <button onClick={onNextHandle}>Next</button>
+            <button onClick={onBeforeHandle}  >Previews</button>
+            <button onClick={onNextHandle}  >Next</button>
         </div>
       </div>
     </div>

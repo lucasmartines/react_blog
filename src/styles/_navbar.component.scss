@@ -4,7 +4,8 @@
     padding: 15px;
     color:white;
     background: var(--primary);
-
+    justify-content: center;
+    align-items: center;
 
     @media(min-width:720px){
         margin: 60px;
@@ -18,7 +19,10 @@
         display: flex;
         margin: 0;
         li{
-            
+            display: flex;
+            align-items: center;
+
+
             a{
                 display:inline-block;
                 padding: 5px 5px;
@@ -29,6 +33,18 @@
                 &:hover{
                     
                     color: var(--primary-overlay);
+                }
+            }
+
+            .navbar-button{
+                margin:0;
+                margin-left: 10px;
+                padding:0;
+                height: 100%;
+                border: 1px solid white;
+                &:hover{
+                    border: 1px solid #ddd;
+                    cursor:pointer;
                 }
             }
             

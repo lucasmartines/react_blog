@@ -7,6 +7,8 @@ import { useMetadata } from './../../context/Metadata.context'
 import {Link } from 'react-router-dom'
 import {history} from 'react-router-dom'
 import firebase from '../../firebase.config'
+import {useUserData} from '../../context/UserData.context'
+
 
 export default () => {
 
@@ -19,6 +21,10 @@ export default () => {
     let params = useParams()
     let history = useHistory()
     window.myHistory = history
+
+    const [logado] = useUserData()
+
+
     useEffect( () => {
        
         const componentStart = async () => {
@@ -67,9 +73,9 @@ export default () => {
 
                 <div className="mostrarPostPage__postImage">
 
-                    <div>
+                    {(logado) && ( <div>
                         <Link to={`/admin/editar_post/${post?.id}`} > Editar </Link>
-                    </div>  
+                    </div>  ) }
 
                     <img src={post?.link}/>
                 </div>

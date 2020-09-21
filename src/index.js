@@ -15,21 +15,30 @@ import Navbar from './components/Navbar.components'
 import MostrarUmPost from './pages/posts/MostrarUmPost.page'
 import NotFound from './pages/notFound/notFound.page'
 
+import Login from './pages/login/login.page'
+import UserData from './context/UserData.context'
+
+import RouterSecure from './components/RouterSecure.component'
+
 ReactDOM.render(
   <Metadata>
-
+    <UserData>
       <Router>
         <Navbar />
         <Switch>
           <Route path="/" exact component={FrontPage} />
-          <Route path="/admin" exact component={Admin} />
-          <Route path="/admin/editar_post/:id"  component={Admin} />
+          <RouterSecure path="/admin" exact component={Admin} />
+          <RouterSecure path="/admin/editar_post/:id"  component={Admin} />
           <Route path="/post/:id"  component={MostrarUmPost} />
+          
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Login} />
 
           <Route path="/not-found" component={NotFound} />
+          <Route path="*" component={NotFound} />
         </Switch>
       </Router>
-
+    </UserData>
   </Metadata>,
   document.getElementById("root")
 );

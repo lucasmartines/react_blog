@@ -11,9 +11,7 @@
    
   
 
-  &__controller{
-    text-align: center; 
-  }
+
   .front-page__titulo{
     text-align: center;
     margin-bottom: 20px;
@@ -38,7 +36,14 @@
     }
     
   }
-
+  &__controller{
+    text-align: center; 
+    button{
+      background: var(--primary);
+      font-size: 18px;
+      color: var(--primary-overlay);
+    }
+  }
 }
 
 

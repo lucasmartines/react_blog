@@ -18,7 +18,12 @@ Firebase Login
 Depois modifique o nome arquivo na linha3 do .firebaserc para o 
 nome do seu respectivo projeto
 
-E por fim
+depois
+```
+npm build
+```
+
+e por fim
 ```
 firebase deploy
 ```

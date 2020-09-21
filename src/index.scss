@@ -46,7 +46,8 @@ ul{
 input,textarea,button{
   display:block;
   padding: 5px;
-  border: 1px solid var(--primary);
+  border: 1px solid #4b72f167;
+  
   margin:5px;
 }
 .container{
@@ -59,7 +60,7 @@ input,textarea,button{
   display:flex;
 }
 
-button{
+button:not(.cancel-css){
   background: var(--primary);
   color:white;
   border: currentColor;
@@ -100,6 +101,7 @@ a:hover{
 label{
   color: #6c3779;
 }
+ 
 @import "./styles/_navbar.component.scss";
 @import "./pages/admin/Admin.style.scss";
 @import "./styles/colors.scss";

@@ -1,10 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-
+import {useUserData} from '../context/UserData.context'
 
 export default ({posts}) => {
 
-    
+    const [logado] = useUserData()
 
     const linkOuDefault = ( url) => {
         return url ? url : "https://via.placeholder.com/150"
@@ -15,19 +15,26 @@ export default ({posts}) => {
         return posts && posts?.map (
              ({titulo,conteudo,link,id}) => (
                 <li key={id} className="post-item">
+                   
                     <img className="float-left" src={linkOuDefault(link)}  />
+                    
                     <h2 className="titulo">
                         <Link to={`/post/${id}`} >{titulo} </Link>
                     </h2>
+
                     <p> {removeHtmlTagFilter ( conteudo.slice(0,300) )}...</p>
+                    
                     <div className="links">
+                        
+                        {( logado ) && ( 
+                            <Link 
+                                className="btn btn-primary"
+                                to={`/admin/editar_post/${id}`} > Editar </Link> 
+                        )}
+                        
+
                         <Link 
                             className="btn btn-primary"
-
-                            to={`/admin/editar_post/${id}`} > Editar </Link>
-                            <Link 
-                            className="btn btn-primary"
-
                             to={`/post/${id}`} > Saiba Mais </Link>
                     </div>
                 </li>
