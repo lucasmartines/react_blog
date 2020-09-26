@@ -2,10 +2,11 @@ import React, { useEffect,useState } from "react";
 import { useLocation,useHistory } from "react-router-dom";
 
 
-import logarUsuario from './../../services/usuario/logarusuario.service'
+import logarUsuario,{logarUsuarioGoogle} from './../../services/usuario/logarusuario.service'
 import cadastrarUsuario from '../../services/usuario/cadastarUsuario.service'
 import {useUserData} from '../../context/UserData.context'
 
+import "./Login.style.scss"
 
 const INITIAL_FORM_STATE = {
     nome:"",
@@ -48,22 +49,39 @@ export default function (props) {
     console.log(e.target.name,e.target.value)
     setFormState({ ...formState ,[e.target.name]:e.target.value})
   }
+  const handleLoginWithGoogle = () => {
+    logarUsuarioGoogle();
 
+  }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => 
+  {
     e.preventDefault()
-    
+    let {email,senha,confirmarSenha,nome} = formState
+
+
     if( isLogin ){
 
-        let {email,senha} = formState
+        
         
         if(email.length && senha.length){
             console.log(email,senha)
             logarUsuario(email,senha)
         }
+        else{
+          alert("Nome ou senha Invalidos")
+        }
 
-    }else{
+    }else
+    {
 
+      if( ( email.length && senha.length ) && ( senha == confirmarSenha ) ){
+        cadastrarUsuario(email,senha,nome)
+      } 
+      else{
+        alert("Nome ou senha Invalidos")
+      }
+       
     }
   }
   return (
@@ -111,7 +129,11 @@ export default function (props) {
                 errorMessage="Senha Não combina"
                 isValid={true}
                  />
-            <LogarCadastrar isLogin={isLogin} />
+            <div className="loginContainer__buttonsContainer" >
+              <button onClick={logarUsuarioGoogle}> Login com o Google</button>
+              <LogarCadastrar isLogin={isLogin} />
+            </div>
+            
         </form>
       </div>
     </>

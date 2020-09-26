@@ -34,7 +34,7 @@ function FrontPage( props )
         var actual = postsCarregados.docs[0]
 
 
-        console.log( postsCarregados.docs.length -1 )
+       // console.log( postsCarregados.docs.length -1 )
 
 
         if( actual  ){
@@ -46,8 +46,8 @@ function FrontPage( props )
 
 
 
-        console.log("last",last)
-        console.log("actual",actual)
+        // console.log("last",last)
+        // console.log("actual",actual)
         
         if( last && actual ){
 
@@ -57,7 +57,7 @@ function FrontPage( props )
             })
     
           setPost(_posts)
-          console.log(_posts)
+          // console.log(_posts)
         }
        
   }

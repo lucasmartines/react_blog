@@ -73,7 +73,7 @@ export default () => {
 
                 <div className="mostrarPostPage__postImage">
 
-                    {(logado) && ( <div>
+                    {(logado) && ( <div style={{ textAlign:"right"} } >
                         <Link to={`/admin/editar_post/${post?.id}`} > Editar </Link>
                     </div>  ) }
 

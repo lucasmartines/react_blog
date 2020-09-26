@@ -8,8 +8,9 @@ import deslogarUsuario from '../services/usuario/deslogarUsuario.service'
 export default () => {
 
     const [version,setVersion] = useMetadata()
-    let [logado,userState] = useUserData();
+    let [userState] = useUserData();
 
+    
     let history = useHistory()
 
     const handleDeslogar = () => {
@@ -27,12 +28,12 @@ export default () => {
                     <Link to="/">Blog</Link>
                 </li>
                 <li>
-                    {(logado)&&(
+                    {(userState)&&(
                     <Link to="/admin">Inserir Post </Link>
                     )}
                 </li>
                 
-                {(!logado)&&(
+                {(!userState)&&(
                     <li>
                         <Link to="/login">Login </Link>
                         <Link to="/signup">Cadastrar </Link>
@@ -41,11 +42,11 @@ export default () => {
             
                 
                     
-                {(logado)&&(
+                {(userState)&&(
                     <li>
                         <button 
                             onClick={handleDeslogar}
-                            className="navbar-button"> Logout </button>
+                            className="navbar-button"> Logout {userState.displayName} </button>
                     </li>
                 )}
                 

@@ -20,8 +20,10 @@ export default ({}) => {
     }
 
     let [novoPost,setNovoPost]  = useState(reseted)
+    let [postFile,setPostFile] = useState(null)
+    
     let [ version,useVersion ] = useMetadata()
-
+    
     let [salvandoStatus,setSalvandoStatus ] = useState({
         mensagem:"",
         estouSalvando: false
@@ -58,7 +60,7 @@ export default ({}) => {
                         conteudo: post.conteudo,
                         link: post.link
                     })
-
+                   // setPostFile( post.link )
             
                     
                  }else{
@@ -91,22 +93,23 @@ export default ({}) => {
             firebase.firestore().doc("/posts/"+params.id ).delete().then( () => {
                 history.push("/")
             })
-            
         }
-
     }
-
+    // when file changes then set temp image
+    // set the link of image that will be rendered in dom
     const handleFileChange = (e) => {
         
         
         let file = e.target.files[0]
-        if( file ){
+        if( file )
+        {
+            setPostFile(file)
             let reader = new FileReader()
             reader.onload = () => {
-                setNovoPost({...novoPost,link:reader.result})
+                setNovoPost({...novoPost,link:reader.result}) // set link in dom
             }
             reader.readAsDataURL( file )
-            
+
         }
     }
 
@@ -130,40 +133,36 @@ export default ({}) => {
     const handleSubmit = (e) =>{
         e.preventDefault()
 
-
-            if( params?.id ){
-                
-                setSalvandoStatus({estouSalvando:true ,mensagem:"Estou Atualizando..."})
-               // console.log(  e.target.file.files[0] )
-                  updatePost({...novoPost } , e.target.file?.files[0] , params.id , onUpdate )
-                
-            }else{
-                setSalvandoStatus({estouSalvando:true ,mensagem:"Estou Salvando..."})
-                savePost({...novoPost } , e.target.file.files[0] , onSave )
-            }
-
-           
+        //console.log( "UPDATE ", postFile )
         
+
+        if( params?.id ){
+            
+            setSalvandoStatus({estouSalvando:true ,mensagem:"Estou Atualizando..."})
+            updatePost({...novoPost } , postFile  , params.id , onUpdate )               
+            
+        }else{
+            setSalvandoStatus({estouSalvando:true ,mensagem:"Estou Salvando..."})
+            savePost({...novoPost } , postFile  , onSave )
+        }
+        
+
     }
 
     
 
     return(
         <>
-
             <div className="container container-admin-page">
                 <h2 className="titulo">
                     <Link to={`/post/${params?.id}`}> { novoPost?.titulo} </Link>
                 </h2>
                 <div className="admin-page">
-
-                    <div className="action">
-                                <button 
-                                    disabled={salvandoStatus.estouSalvando}
-                                    onClick={  handleSubmit}
-                                > 
-                                
-                                { params?.id ? "Atualizar":"Inserir"} </button> 
+                    <div style={{textAlign:"center"}}> 
+                        {salvandoStatus.estouSalvando
+                                ?salvandoStatus.mensagem:""}
+                    </div>
+                    <div className="action">    
                                 
                                 {params?.id ? ( 
                                 <button 
@@ -171,12 +170,18 @@ export default ({}) => {
                                     Deletar Post 
                                 </button>
                                 ):""}
-                            </div>
+
+                                <button 
+                                    disabled={salvandoStatus.estouSalvando}   
+                                    onClick={  handleSubmit} > 
+                                    { params?.id ? "Atualizar":"Inserir"} 
+                                </button> 
+                    </div>
 
                         <div class="admin-page__image">
                             <img src={novoPost.link} /> <br/>
-                            {/* <small> Imagem Antiga </small> */}
                         </div>
+
                         <form onSubmit={handleSubmit}>
                             <label htmlFor="titulo">Nome</label>
                             <input 
@@ -195,14 +200,6 @@ export default ({}) => {
 
                             <label htmlFor="conteudo">Conteudo</label>
                             
-                            
-                            {/* <textarea 
-                                required 
-                                rows={40}  
-                                name="conteudo" 
-                                value={novoPost.conteudo}
-                                onChange={changeValue} /> */}
-                            
                            
                             <TextEditor 
                                 initial={novoPost.conteudo}
@@ -214,14 +211,11 @@ export default ({}) => {
                                         
                                     }
                                 } />
-                                    
 
-                            {salvandoStatus.estouSalvando
-                                ?salvandoStatus.mensagem:""}
+
                         </form>
                 </div>
             </div>
-
         </>
     )
 }
